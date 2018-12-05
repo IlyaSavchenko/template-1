@@ -9,29 +9,31 @@
 </head>
 <body>
 	<section id="main-menu">
-		<div class="flex-container">
-		<?php 
-			if(is_front_page()){
-				echo '<div class="top-logo"><img src="//androidsfaq.com/wp-content/uploads/2018/10/logo-1.png" alt="logo"></div>';   //Change path
-			} else {
-				echo '<div class="top-logo"><a href="/" ><img src="//androidsfaq.com/wp-content/uploads/2018/10/logo-1.png" alt="logo"></a></div>';  //Change path
-			}
-			
-			function empty_menu(){
-				echo 'Выполните настройку меню.';
-			}
+		<div class="container">
+			<div class="row">
+				<?php 
+					if(is_front_page()){
+						echo '<div class="col-2 top-logo"><img src="//androidsfaq.com/wp-content/uploads/2018/10/logo-1.png" alt="logo"></div>';   //Change path
+					} else {
+						echo '<div class="col-2 top-logo"><a href="/" ><img src="//androidsfaq.com/wp-content/uploads/2018/10/logo-1.png" alt="logo"></a></div>';  //Change path
+					}
+					
+					function empty_menu(){
+						echo 'Выполните настройку меню.';
+					}
 
-			wp_nav_menu([
-				'theme_location' => 'header-menu',
-				'fallback_cb' => 'empty_menu',
-				'container' => 'nav',
-				'container_id' => 'top-menu',
-				'container_class' => 'class-menu',
-				'menu_id' => 'top-menu-list',  //ul
-				'menu_class' => 'class-menu-list', //ul
-				'depth' => 2
-			]);
-		?>		
+					wp_nav_menu([
+						'theme_location' => 'header-menu',
+						'fallback_cb' => 'empty_menu',
+						'container' => 'nav',
+						'container_id' => 'top-menu',
+						'container_class' => 'col-10 class-menu',
+						'menu_id' => 'top-menu-list',  //ul
+						'menu_class' => 'row justify-content-between class-menu-list ', //ul
+						'depth' => 2
+					]);
+				?>		
+			</div>
 		</div>	
 	</section>
 	

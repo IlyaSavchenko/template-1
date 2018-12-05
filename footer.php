@@ -1,13 +1,14 @@
 	<footer id="footer">
-		<div class="rh-container rh-container-flex" style="height:auto; color:#fff">
-			<div class="logo-section">
+		<div class="container" style="height:auto; color:#fff">
+			<div class="row">
+			<div class="col-2 logo-section">
 				<?php if(is_front_page()){
                     echo '<div class="logo_image"><img src="//androidsfaq.com/wp-content/uploads/2018/10/logo-1.png" alt="logo"/></div>';
                   }               
                   else{
                     echo '<a href="/" class="logo_image"><img src="//androidsfaq.com/wp-content/uploads/2018/10/logo-1.png" alt="logo"/></a>';} ?>
 			</div>
-			<div class="footer-content">
+			<div class=" col-10 footer-content">
 				<div class="footer-links">
 					<ul class="links-container">
 						<li>
@@ -96,12 +97,13 @@
 		</div>
 	</footer>
 	<?php wp_footer();?>
+	<script src="//serezhq6.beget.tech//wp-content/themes/newDesign/assets/js/main.js"></script> <!-- //Change path -->
 	<?php
-        //if(current_user_can('update_core')) {
+        if(current_user_can('update_core')) {
             echo '<center>'.get_num_queries().' запросов за ';
             timer_stop(1);
             echo ' секунд</center>';
-        //}
+        }
     ?>
 </body>
 </html>
