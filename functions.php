@@ -9,7 +9,7 @@ add_theme_support( 'html5', array( 'search-form' ) );
 add_theme_support('post-thumbnails'); // Add thumbnails
 add_image_size( 'thumb185', 185, 185, true );
 add_image_size( 'thumb70', 70, 70, true );
-add_image_size( 'sliderimg', 200, 150, true );
+add_image_size( 'sliderimg', 310, 165, true );
 
 function register_my_widgets(){
 	register_sidebar( array(
@@ -89,7 +89,7 @@ function popular_article(){
         $populargb->the_post();
         $cat = get_the_category(); 
 		echo '<div class="tile-article">
-				<div class="img-popular-publication-item">'.get_the_post_thumbnail().'</div>
+				<div class="item-img">'.get_the_post_thumbnail().'</div>
 				<div class="tile-article-info">
 					<a href="'.get_the_permalink().'">
 						<span class="tile-article-category">'.$cat[0]->name.'</span><br>
@@ -116,15 +116,15 @@ function index_category_1(){
 	$populargb = new WP_Query('cat=3&showposts=3&orderby=meta_value_num' ); //Change category id
 		while ( $populargb->have_posts() ) {
 		$populargb->the_post();
-		echo '<div class="popular-publication-item-container"><a class="popular-publication-item" href="'.get_permalink().'">
-					<div class="img-popular-publication-item">'.get_the_post_thumbnail().'</div>
+		echo '<div class="front-item-container"><a class="item-img-link" href="'.get_permalink().'">
+					<div class="item-img">'.get_the_post_thumbnail().'</div>
 					<div class="title-popular-publication-item">
-						<span class="front-post-title">'.get_the_title().'</span>
+						<span class="item-title">'.get_the_title().'</span>
 					</div>
 				</a>
-				<div class="addition-info">
-					<span class="post-date">'.get_the_date().'</span>
-					<span class="count-comment">▪ Комментариев - '.get_comments_number().'</span>
+				<div class="item-addition-info">
+					<span class="item-date">'.get_the_date().'</span>
+					<span class="item-count-comment">▪ Комментариев - '.get_comments_number().'</span>
 				</div>
 				</div>'; //<span class="small-text">'.get_the_excerpt().'</span>
 	}
@@ -135,15 +135,15 @@ function index_category_2(){
 	$populargb = new WP_Query('cat=7&showposts=3&orderby=meta_value_num' ); //Change category id
 		while ( $populargb->have_posts() ) {
 		$populargb->the_post();
-		echo '<div class="popular-publication-item-container"><a class="popular-publication-item" href="'.get_permalink().'">
-					<div class="img-popular-publication-item">'.get_the_post_thumbnail().'</div>
+		echo '<div class="front-item-container"><a class="item-img-link" href="'.get_permalink().'">
+					<div class="item-img">'.get_the_post_thumbnail().'</div>
 					<div class="title-popular-publication-item">
-						<span class="front-post-title">'.get_the_title().'</span>
+						<span class="item-title">'.get_the_title().'</span>
 					</div>
 				</a>
-				<div class="addition-info">
-					<span class="post-date">'.get_the_date().'</span>
-					<span class="count-comment">▪ Комментариев - '.get_comments_number().'</span>
+				<div class="item-addition-info">
+					<span class="item-date">'.get_the_date().'</span>
+					<span class="item-count-comment">▪ Комментариев - '.get_comments_number().'</span>
 				</div>
 				</div>'; //<span class="small-text">'.get_the_excerpt().'</span>
 	}
@@ -156,24 +156,24 @@ function index_category_3(){
 		$populargb->the_post();
 		$link = get_permalink();
 		$rehub_views = get_post_meta (get_the_ID(),'rehub_views',true);
-		echo '<div class="popular-publication-item-container1">
-				<div class="container-popular-publication">
-					<a class="popular-publication-item" href="'.$link.'">
-						<div class="img-popular-publication-item">'.get_the_post_thumbnail().'</div>
+		echo '<div class="front-item-container1">
+				<div class="item-container">
+					<a class="item-img-link" href="'.$link.'">
+						<div class="item-img">'.get_the_post_thumbnail().'</div>
 					</a>
-					<div class="popular-publication-subcontainer">
+					<div class="item-subcontainer">
 						<a href="'.$link.'">
-							<span class="front-post-title">'.get_the_title().'</span>
+							<span class="item-title">'.get_the_title().'</span>
 
-							<div class="addition-info">
-								<span class="post-author">'.get_the_author().'</span>
-								<span class="post-date">▪ '.get_the_date().'</span>
-								<span class="post-views-count">▪ просмотров: '.$rehub_views .'</span>
+							<div class="item-addition-info">
+								<span class="item-author">'.get_the_author().'</span>
+								<span class="item-date">▪ '.get_the_date().'</span>
+								<span class="item-views-count">▪ просмотров: '.$rehub_views .'</span>
 							</div>
 						</a>
 
 					<span class="small-text">'.get_the_excerpt().'</span>
-					<a class="link-button" href="'.$link.'">Читать далее</a>
+					<a class="item-link-button" href="'.$link.'">Читать далее</a>
 					</div>
 				</div>
 			</div>';
@@ -181,4 +181,27 @@ function index_category_3(){
 	}
 	wp_reset_query();
 }
+
+function wp_corenavi() {
+  global $wp_query, $wp_rewrite;
+  $pages = '';
+  $max = $wp_query->max_num_pages;
+  if (!$current = get_query_var('paged')) $current = 1;
+  $a['base'] = str_replace(999999999, '%#%', get_pagenum_link(999999999));
+  $a['total'] = $max;
+  $a['current'] = $current;
+
+  $total = 0; //1 - выводить текст "Страница N из N", 0 - не выводить
+  $a['mid_size'] = 2; //сколько ссылок показывать слева и справа от текущей
+  $a['end_size'] = 2; //сколько ссылок показывать в начале и в конце
+  $a['prev_text'] = '🠜'; //текст ссылки "Предыдущая страница"
+  $a['next_text'] = '🠞'; //текст ссылки "Следующая страница"
+
+  if ($max > 1) echo '<div class="navigation"><div class="navigation-inner">';
+//  if ($total == 1 && $max > 1) $pages = '<span class="pages">Страница ' . $current . ' из ' . $max . '</span>'."\r\n";
+  echo $pages . paginate_links($a);
+  if ($max > 1) echo '</div></div>';
+}
+
+
 ?>
