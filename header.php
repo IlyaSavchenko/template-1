@@ -27,12 +27,13 @@
 						'fallback_cb' => 'empty_menu',
 						'container' => 'nav',
 						'container_id' => 'top-menu',
-						'container_class' => 'col-10 class-menu',
+						'container_class' => 'col-12 col-lg-10 class-menu',
 						'menu_id' => 'top-menu-list',  //ul
 						'menu_class' => 'row justify-content-between class-menu-list ', //ul
 						'depth' => 2
 					]);
-				?>		
+				?>
+				<div class="menu-button"><i class="fas fa-bars"></i></div>		
 			</div>
 		</div>	
 	</section>

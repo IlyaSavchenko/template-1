@@ -1,14 +1,14 @@
 	<footer id="footer">
 		<div class="container" style="height:auto; color:#fff">
 			<div class="row">
-			<div class="col-2 logo-section">
+			<div class="col-6 col-sm-3 col-lg-2 logo-section">
 				<?php if(is_front_page()){
                     echo '<div class="logo_image"><img src="//androidsfaq.com/wp-content/uploads/2018/10/logo-1.png" alt="logo"/></div>';
                   }               
                   else{
                     echo '<a href="/" class="logo_image"><img src="//androidsfaq.com/wp-content/uploads/2018/10/logo-1.png" alt="logo"/></a>';} ?>
 			</div>
-			<div class=" col-10 footer-content">
+			<div class="col-12 col-lg-10 footer-content">
 				<div class="footer-links">
 					<ul class="links-container">
 						<li>
@@ -61,7 +61,7 @@
 									echo '<span>Карта сайта</span>';
 								}
 								else {
-									echo '<a href="//androidsfaq.com/sitemap/" class="links" rel="nofollow">Карта сайта</a>';
+									echo '<a href="http://serezhq6.beget.tech/sitemap/" class="links" rel="nofollow">Карта сайта</a>';
 								}
 							?>
 						</li>
@@ -97,7 +97,14 @@
 		</div>
 	</footer>
 	<?php wp_footer();?>
+	<progress value="0" style="position:fixed;">
+		<div class="progress-container">
+			<span class="progress-bar"></span>
+		</div>
+	</progress>
+	<div class="button-up"><span><img src="//androidsfaq.com/wp-content/themes/rehub1/images/icons/up.svg" alt="up"></span></div>
 	<script src="//serezhq6.beget.tech//wp-content/themes/newDesign/assets/js/main.js"></script> <!-- //Change path -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 	<?php
         if(current_user_can('update_core')) {
             echo '<center>'.get_num_queries().' запросов за ';

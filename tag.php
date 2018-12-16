@@ -1,10 +1,10 @@
 <?php get_header(); ?>
-	<section id="category">
+	<section id="tag">
         <div class="container main-container">
             <div class="row">
                 <div class="col-12 col-lg-8 row content-container boreder" >
                     <div class="group-items">
-                        <div class="h2 group-header">Категория:<span class="group-name"><?php echo ' '; single_cat_title();?></span></div>
+                        <div class="h2 group-header">Тег:<span class="group-name"><?php echo ' '; single_tag_title();?></span></div>
                         <div class="row group-container-items" style="margin-right: 0;margin-left: 0;">
                             <?php if(have_posts()): ?>
                                 <?php while(have_posts()) : the_post(); 
@@ -37,7 +37,7 @@
                         <?php if (function_exists('wp_corenavi')) wp_corenavi(); ?>
                     </div>
                 </div>
-            	<?php get_sidebar(); ?>
+                <?php get_sidebar(); ?>
             </div>
         </div>
     </section>
